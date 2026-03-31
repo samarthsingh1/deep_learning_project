@@ -3,19 +3,26 @@
 ### Aayush Verma, Kanishk Kaul, Rishi Koushik Sridharan, Samarth Singh
 ### 1.	Background
 Electricity demand forecasting is a critical task for power grid operators and energy providers. Accurate load forecasting enables efficient energy generation scheduling, grid stability, and better integration of renewable energy sources. Traditional time-series forecasting methods such as ARIMA, exponential smoothing, and regression-based models have been widely used for electricity demand prediction. However, these methods often struggle to capture complex temporal dependencies and long-term patterns present in electricity consumption data.
+
 Recent advances in deep learning have shown that Transformer neural networks are highly effective for sequence modeling tasks. Originally introduced for natural language processing, Transformers rely on self-attention mechanisms that allow the model to capture long-range dependencies across time steps without relying on recurrent structures. This property makes them particularly suitable for time series forecasting problems, where future electricity demand may depend on usage patterns observed over long historical windows.
+
 In this project, we propose to apply a Transformer-based time series forecasting model to predict electricity consumption patterns using the Electricity Load Diagrams 2011–2014 dataset. The main focus of the project will be probabilistic forecasting, where the model predicts a range of likely future demand values rather than only a single point estimate. This will be achieved through quantile-based forecasting, allowing the model to generate prediction intervals that better represent uncertainty in electricity demand.
 ________________________________________
 ### 2.	Significance and Problem Statement
 Electricity load forecasting plays an important role in the operation and planning of modern power systems. Grid operators must anticipate future electricity demand in order to allocate generation resources efficiently, maintain grid reliability, reduce energy waste, and avoid overproduction or shortages of electricity.
+
 Electricity consumption exhibits strong temporal patterns such as hourly cycles, daily variations, weekly trends, and seasonal effects. At the same time, electricity demand is inherently uncertain because it is influenced by changing weather conditions, human activity, holidays, and other unpredictable factors. As a result, models that only produce point predictions may not provide enough information for real-world decision-making.
+
 This project aims to investigate how Transformer-based deep learning models can be used for probabilistic electricity load forecasting by capturing long-range temporal dependencies and generating prediction intervals for future demand. The model will be trained on historical electricity consumption data and evaluated against baseline forecasting methods. In addition, if time permits, the project will include a comparison with a second Transformer-based architecture to study whether a different design improves forecasting accuracy or uncertainty estimation.
 ________________________________________
 
 ### 3.	Dataset and Data Acquisition
 The dataset used for this project is the Electricity Load Diagrams 2011–2014 dataset, available from the UCI Machine Learning Repository.
+
 Dataset source: https://archive.ics.uci.edu/dataset/321/electricityloaddiagrams20112014
+
 The dataset contains electricity consumption data for 370 customers measured every 15 minutes over a period of four years (2011–2014). Each column corresponds to the electricity consumption of a specific customer, and each row represents a timestamped observation.
+
 For this project, the data will be preprocessed to create training and testing datasets suitable for probabilistic forecasting. To keep the scope manageable within the project timeline, the customer-level load series will be aggregated into a single hourly electricity demand series. This allows the team to focus on the forecasting methodology and quality while reducing the complexity of large-scale multivariate modeling and preprocessing.
 ________________________________________
 ### 4.	Deep Learning Framework and Model Implementation
@@ -41,21 +48,24 @@ ________________________________________
 
 ### 5.	Validation and Evaluation Metrics
 To evaluate the performance of the forecasting models, both point forecast and probabilistic forecast metrics will be considered. Since the project focuses on probabilistic electricity load forecasting, greater emphasis will be placed on metrics that assess uncertainty estimation and interval quality. However, the final choice of evaluation metrics may be refined depending on the specific forecasting setup, data behavior, and experimental results observed during implementation.
+
 At present, the following metrics are proposed:
-Point Forecast Metrics:
 
-•	Mean Absolute Error (MAE)
+- Point Forecast Metrics:
 
-•	Root Mean Squared Error (RMSE)
+  •	 Mean Absolute Error (MAE)
 
-•	Mean Absolute Percentage Error (MAPE)
+  •	Root Mean Squared Error (RMSE)
+
+  •	Mean Absolute Percentage Error (MAPE)
 
 For point forecast comparison, the median predicted value from the probabilistic model will be treated as the central forecast.
-Probabilistic Forecast Metrics:
 
-•	Quantile Loss (Pinball Loss)
+- Probabilistic Forecast Metrics:
 
-•	Prediction Interval Coverage Probability (PICP)
+  •	Quantile Loss (Pinball Loss)
+
+  •	Prediction Interval Coverage Probability (PICP)
 
 Additional evaluation measures may also be considered if needed, depending on how well they reflect the forecasting objectives and the characteristics of the predicted uncertainty intervals.
 
@@ -69,10 +79,13 @@ If the optional extension is completed, the project will also provide a comparis
 ### 7.	Team Responsibilities
 - Team Member 1 – Data Engineering and Preprocessing
 Responsible for downloading and cleaning the dataset, resampling the data to hourly intervals, handling missing values, normalizing electricity demand, engineering time-based features, generating input-output forecasting sequences, and preparing training, validation, and test datasets.
+
 - Team Member 2 – Baseline Model Development
 Responsible for implementing and evaluating baseline forecasting models, including a naive persistence forecast and an LSTM-based forecasting model. This team member will also help establish benchmark performance for comparison with transformer-based models.
+
 - Team Member 3 – Main Transformer Model Development
 Responsible for implementing the primary Transformer-based probabilistic forecasting model, including input embeddings, positional encodings, self-attention layers, and the forecasting head. This team member will train and tune the main model for multi-step electricity demand prediction.
+
 - Team Member 4 – Probabilistic Forecasting and Evaluation
 Responsible for implementing the probabilistic forecasting framework, including quantile regression, pinball loss, prediction interval generation, and uncertainty evaluation metrics. This team member will also contribute to comparative analysis of model outputs and interpretation of probabilistic forecasting results.
 
