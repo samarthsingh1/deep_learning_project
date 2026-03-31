@@ -21,12 +21,19 @@ ________________________________________
 ### 4.	Deep Learning Framework and Model Implementation
 The primary forecasting model will be implemented using the PyTorch or TensorFlow deep learning framework. The model will be designed for probabilistic multi-step forecasting, where historical electricity demand over a fixed input window is used to predict multiple quantiles of future demand over a specified forecast horizon.
 The Transformer architecture will include:
+
 •	an input feature embedding layer
+
 •	positional encoding to represent time order
+
 •	multiple self-attention encoder layers
+
 •	feed-forward layers for sequence representation
+
 •	an output layer that predicts multiple quantiles for each future time step
+
 The input to the model will consist of historical electricity load values along with time-based covariates such as hour of day, day of week, and month. The model will be developed for multi-step forecasting, using a fixed historical input sequence to generate probabilistic forecasts for the next 24 hours. The output will be a set of quantile forecasts, such as the 10th, 50th, and 90th percentiles, for each step in the prediction horizon. This formulation will allow the model to estimate both the central tendency of future electricity demand and the associated uncertainty intervals. Training will be performed using quantile loss (pinball loss), which is a standard and widely used approach for probabilistic forecasting.
+
 As an optional extension, if time permits, the project will implement one additional Transformer-based forecasting architecture with a different but still manageable design, such as Informer or another lightweight long-sequence forecasting model. This extension will be included only if the core forecasting pipeline is completed successfully. ________________________________________
 
 
@@ -34,27 +41,38 @@ As an optional extension, if time permits, the project will implement one additi
 To evaluate the performance of the forecasting models, both point forecast and probabilistic forecast metrics will be considered. Since the project focuses on probabilistic electricity load forecasting, greater emphasis will be placed on metrics that assess uncertainty estimation and interval quality. However, the final choice of evaluation metrics may be refined depending on the specific forecasting setup, data behavior, and experimental results observed during implementation.
 At present, the following metrics are proposed:
 Point Forecast Metrics:
+
 •	Mean Absolute Error (MAE)
+
 •	Root Mean Squared Error (RMSE)
+
 •	Mean Absolute Percentage Error (MAPE)
+
 For point forecast comparison, the median predicted value from the probabilistic model will be treated as the central forecast.
 Probabilistic Forecast Metrics:
+
 •	Quantile Loss (Pinball Loss)
+
 •	Prediction Interval Coverage Probability (PICP)
+
 Additional evaluation measures may also be considered if needed, depending on how well they reflect the forecasting objectives and the characteristics of the predicted uncertainty intervals.
+
 This set of metrics is intended to support comparison of the baseline models and the Transformer-based forecasting model in terms of both predictive accuracy and quality of uncertainty estimation.
 ________________________________________
 ### 6.	Expected Outcome
 The expected outcome of this project is a Transformer-based probabilistic forecasting system capable of predicting future electricity demand together with uncertainty bounds. The project is expected to demonstrate that Transformer-based models can effectively capture temporal patterns in electricity load data and provide more informative forecasts than standard point prediction approaches.
+
 If the optional extension is completed, the project will also provide a comparison between two Transformer-based forecasting architectures and discuss the trade-offs between model complexity, forecasting accuracy, and probabilistic performance.
+
 ### 7.	Team Responsibilities
-Team Member 1 – Data Engineering and Preprocessing
+- Team Member 1 – Data Engineering and Preprocessing
 Responsible for downloading and cleaning the dataset, resampling the data to hourly intervals, handling missing values, normalizing electricity demand, engineering time-based features, generating input-output forecasting sequences, and preparing training, validation, and test datasets.
-Team Member 2 – Baseline Model Development
+- Team Member 2 – Baseline Model Development
 Responsible for implementing and evaluating baseline forecasting models, including a naive persistence forecast and an LSTM-based forecasting model. This team member will also help establish benchmark performance for comparison with transformer-based models.
-Team Member 3 – Main Transformer Model Development
+- Team Member 3 – Main Transformer Model Development
 Responsible for implementing the primary Transformer-based probabilistic forecasting model, including input embeddings, positional encodings, self-attention layers, and the forecasting head. This team member will train and tune the main model for multi-step electricity demand prediction.
-Team Member 4 – Probabilistic Forecasting and Evaluation
+- Team Member 4 – Probabilistic Forecasting and Evaluation
 Responsible for implementing the probabilistic forecasting framework, including quantile regression, pinball loss, prediction interval generation, and uncertainty evaluation metrics. This team member will also contribute to comparative analysis of model outputs and interpretation of probabilistic forecasting results.
+
 If time permits, the optional implementation of a second Transformer-based architecture will be carried out collaboratively, with the work divided equally among all four team members.
 
